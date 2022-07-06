@@ -52,9 +52,11 @@
         </label>
         <label class="block mb-6">
             <span class="text-gray-700">イメージ</span>
+            <img id="preview" src="" alt="プレビュー" class="w-1/4 h-1/4 bg-gray-100 object-cover object-center">
             <input
             name="image"
             type="file"
+            onchange="previewImage(this);"
             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             accept="image/jpeg,image/gif,image/png"
             />
@@ -75,4 +77,16 @@
             </button>
     </form>
 </div>
+
+<script>
+    function previewImage(a)
+    {
+    var fileReader = new FileReader();
+    fileReader.onload = (function() {
+        document.getElementById('preview').src = fileReader.result;
+    });
+    fileReader.readAsDataURL(a.files[0]);
+    }
+</script>
+
 @endsection
