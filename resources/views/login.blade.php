@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/d2664eb908.js" crossorigin="anonymous"></script>
     <title>ログイン</title>
 </head>
-<body  class="xl:w-1/2 lg:w-1/2 md:w-1/2 sm:w-full  m-auto mt-16  bg-gray-100 list-none">
+<body  class="xl:w-1/2 lg:w-1/2 md:w-1/2 w-full  m-auto mt-16  bg-gray-100 list-none">
     @if($errors->any())
     @foreach ($errors->all() as $error)
     <div class="text-center">

@@ -69,7 +69,7 @@
     </div>
 
     {{-- タイトル一覧 --}}
-    <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
         @foreach($records as $record)
         <div>
             <a href="{{ route('record.detail',$record->id)}}" class="group h-96 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
