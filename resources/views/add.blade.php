@@ -59,7 +59,7 @@
             type="file"
             onchange="previewImage(this);"
             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            accept="image/jpeg,image/gif,image/png"
+            accept="image/jpeg,image/gif,image/png,"
             />
         </label>
         <label class="block mb-6">
