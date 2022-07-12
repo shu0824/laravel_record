@@ -15,7 +15,7 @@
         @foreach($records as $record)
         <div class="p-6 border border-gray-300 bg-white sm:rounded-md">
             <label class="block mb-6">
-                <span class="text-gray-700">作品名</span>
+                <span class="text-gray-700">タイトル</span>
                 <input
                 name="title"
                 type="text"

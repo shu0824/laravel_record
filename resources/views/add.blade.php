@@ -15,7 +15,7 @@
     <form action="{{ route('record.add') }}" method="post" enctype="multipart/form-data">
                 @csrf
         <label class="block mb-6">
-            <span class="text-gray-700">作品名</span>
+            <span class="text-gray-700">タイトル</span>
             <input
             name="title"
             type="text"

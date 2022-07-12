@@ -20,7 +20,7 @@
         <form action="{{ route('register') }}" method="post">
         @csrf
             <label class="block mb-6">
-                <span class="text-gray-700">name</span>
+                <span class="text-gray-700">ユーザーネーム</span>
                 <input
                 name="name"
                 type="text"
@@ -28,7 +28,7 @@
                 />
             </label>
             <label class="block mb-6">
-                <span class="text-gray-700">email</span>
+                <span class="text-gray-700">メールアドレス</span>
                 <input
                 name="email"
                 type="email"
@@ -36,7 +36,7 @@
                 />
             </label>
             <label class="block mb-6">
-                <span class="text-gray-700">password</span>
+                <span class="text-gray-700">パスワード</span>
                 <input
                 name="password"
                 type="password"
@@ -44,7 +44,7 @@
                 />
             </label>
             <label class="block mb-6">
-                <span class="text-gray-700">confirm</span>
+                <span class="text-gray-700">パスワード（確認用）</span>
                 <input
                 name="password_confirmation"
                 type="password"

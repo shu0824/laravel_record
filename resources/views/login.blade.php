@@ -20,7 +20,7 @@
         <form action="{{ route('login') }}" method="post">
                     @csrf
             <label class="block mb-6">
-                <span class="text-gray-700">email</span>
+                <span class="text-gray-700">メールアドレス</span>
                 <input
                 name="email"
                 type="email"
@@ -28,7 +28,7 @@
                 />
             </label>
             <label class="block mb-6">
-                <span class="text-gray-700">password</span>
+                <span class="text-gray-700">パスワード</span>
                 <input
                 name="password"
                 type="password"

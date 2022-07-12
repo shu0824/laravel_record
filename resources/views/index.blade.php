@@ -73,7 +73,7 @@
         @foreach($records as $record)
         <div>
             <a href="{{ route('record.detail',$record->id)}}" class="group h-96 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
-            <img src="{{ asset('/storage/'.$record->image) }}" loading="lazy" alt="Photo by Austin Wade" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
+            <img src="data:image/png;base64,{{ $record->image }}" loading="lazy" alt="Photo by Austin Wade" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
 
             @include('layouts.star')
 
