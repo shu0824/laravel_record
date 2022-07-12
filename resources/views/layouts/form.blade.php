@@ -8,7 +8,6 @@
     <script src="https://kit.fontawesome.com/d2664eb908.js" crossorigin="anonymous"></script>
     <title>@yield('title')</title>
 </head>
-<body  class="w-full  m-auto  bg-gray-100 list-none">
+<body  class="xl:w-4/5 lg:w-4/5 sm:w-full  m-auto  bg-gray-100 list-none">
     @yield('content')
 </body>
-

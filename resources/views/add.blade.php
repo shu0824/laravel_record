@@ -1,4 +1,5 @@
-@extends('layouts.record')
+@extends('layouts.form')
+@section('title','追加')
 @section('content')
 @if($errors->any())
 @foreach ($errors->all() as $error)

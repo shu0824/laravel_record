@@ -1,13 +1,6 @@
 @extends('layouts.record')
 @section('title','ホーム')
 @section('content')
-    {{-- <section class="bg-red-400">
-        <div class="grid grid-rows-3 grid-flow-col gap-4">
-            <li class="row-span-3 cal-span-1"><img src="" alt="profiel-image"></li>
-            <li class="row-span-1 cal-span-2">{{ $name }}</li>
-            <li class="row-span-2 cal-span-2">作品数：{{ count($records) }}件</li>
-        </div>
-    </section> --}}
     <div>
         <form class="float-right" action="{{ route('logout') }}" method="post">
             @csrf
@@ -18,7 +11,7 @@
 
     {{-- カテゴリー選択 --}}
     <div class="bg-white">
-        <nav class="flex flex-col sm:flex-row">
+        <nav class="flex flex-row">
             @foreach($categories as $category)
             <form action="{{ route('record.index') }}" method="post">
             @csrf
@@ -76,17 +69,17 @@
     </div>
 
     {{-- タイトル一覧 --}}
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+    <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
         @foreach($records as $record)
         <div>
-    <a href="{{ route('record.detail',$record->id)}}" class="group h-96 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
-    <img src="{{ asset('/storage/'.$record->image) }}" loading="lazy" alt="Photo by Austin Wade" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
+            <a href="{{ route('record.detail',$record->id)}}" class="group h-96 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
+            <img src="{{ asset('/storage/'.$record->image) }}" loading="lazy" alt="Photo by Austin Wade" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
 
-    @include('layouts.star')
+            @include('layouts.star')
 
-        <span class="text-gray-800 text-lg lg:text-xl font-bold">{{ $record->title }}</span>
-    </div>
-    </a>
+                <span class="text-gray-800 text-lg lg:text-xl font-bold">{{ $record->title }}</span>
+        </div>
+        </a>
     </div>
     @endforeach
     {{-- タイトルend --}}

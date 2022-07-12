@@ -1,4 +1,5 @@
-@extends('layouts.record')
+@extends('layouts.form')
+@section('title','更新')
 @section('content')
 @if($errors->any())
 @foreach ($errors->all() as $error)
@@ -12,7 +13,7 @@
     <form action="{{ route('record.update') }}" method="post" enctype="multipart/form-data">
     @csrf
         @foreach($records as $record)
-        <div class="p-6 border border-gray-300 sm:rounded-md">
+        <div class="p-6 border border-gray-300 bg-white sm:rounded-md">
             <label class="block mb-6">
                 <span class="text-gray-700">作品名</span>
                 <input

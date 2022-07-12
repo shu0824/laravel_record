@@ -16,8 +16,8 @@ use App\Http\Controllers\UserController;
 */
 Route::group(['middleware '=> ['auth']],function(){
 
-    Route::get('/record',[RecordController::class,'index'])->name('record.index');
-    Route::post('/record',[RecordController::class,'index'])->name('record.index');
+    Route::get('/',[RecordController::class,'index'])->name('record.index');
+    Route::post('/',[RecordController::class,'index'])->name('record.index');
     Route::get('/record/addForm',[RecordController::class,'showAddForm'])->name('record.addIndex');
     Route::get('/record/detail/{id}',[RecordController::class,'showDetail'])->name('record.detail');
     Route::post('/record/add',[RecordController::class,'add'])->name('record.add');

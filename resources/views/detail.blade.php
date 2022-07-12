@@ -1,4 +1,5 @@
 @extends('layouts.record')
+@section('title','詳細')
 @section('content')
 @foreach($records as $record)
 <div class="flex justify-between bg-white">
