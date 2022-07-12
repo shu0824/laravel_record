@@ -126,15 +126,16 @@ class RecordController extends Controller
                 $image = base64_encode(file_get_contents($request->image->getRealPath()));
                 // $image = $request->file('image');
                 // $path = $image->store('img','public');
+
                 if($image){
-                    Record::where('title',$request->title)->update([
+                    Record::where('title',$request->title)->where('content',$request->content)->update([
                         'image' => $image,
                     ]);
                 }
-            }else{
-                Record::where('title',$request->title)->update([
-                    'image' => 'img/ya8lCdOabnqQjlBHcVcAZvcgsiHzw6H1g4I3NTYc.jpg',
-                ]);
+            // }else{
+            //     Record::where('title',$request->title)->update([
+            //         'image' => 'img/ya8lCdOabnqQjlBHcVcAZvcgsiHzw6H1g4I3NTYc.jpg',
+            //     ]);
             }
             //     $image = $request->file('image');
             //     $path = $image->store('img','public');

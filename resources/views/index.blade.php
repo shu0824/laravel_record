@@ -72,8 +72,8 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
         @foreach($records as $record)
         <div>
-            <a href="{{ route('record.detail',$record->id)}}" class="group h-96 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
-            <img src="data:image/png;base64,{{ $record->image }}" loading="lazy" alt="Photo by Austin Wade" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
+            <a href="{{ route('record.detail',$record->id)}}" class="group xl:h-96 lg:h-96 h-64 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
+            <img src="data:image/png;base64,{{ $record->image }}" loading="lazy" alt="NoImage" class="w-full h-full object-contain xl:object-cover lg:object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
 
             @include('layouts.star')
 

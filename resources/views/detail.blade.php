@@ -22,7 +22,7 @@
           <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
             <div>
               <div class="h-64 md:h-auto bg-gray-100 overflow-hidden rounded-lg shadow-lg">
-                <img src="{{ asset('/storage/'.$record->image) }}" loading="lazy" alt="Photo by Martin Sanchez" class="w-full h-full object-cover object-center" />
+                <img src="data:image/png;base64,{{ $record->image }}" loading="lazy" alt="NoImage" class="w-full h-full max-h-screen object-contain object-center" />
               </div>
             </div>
 
