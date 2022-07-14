@@ -1,6 +1,15 @@
 @extends('layouts.record')
 @section('title','ホーム')
 @section('content')
+//new
+<form action="{{ route('image') }}" method="post" enctype="multipart/form-data">
+@csrf
+<input type="file" name="image">
+<input type="submit" value="アップロード">
+</form>
+
+<a href="{{ route('post') }}">post</a>
+//end
     <div>
         <form class="float-right" action="{{ route('logout') }}" method="post">
             @csrf

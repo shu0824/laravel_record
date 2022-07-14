@@ -172,11 +172,10 @@ class RecordController extends Controller
         ]);
         if($request->image){
             if($request->image !== $record->image){
-                $image = $request->file('image');
-                $path = $image->store('img','public');
-                if($path){
+                $image = base64_encode(file_get_contents($request->image->getRealPath()));
+                if($image){
                     $record->update([
-                        'image' => $path,
+                        'image' => $image,
                     ]);
                 }
             }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,9 @@ Route::group(['middleware '=> ['auth']],function(){
     Route::post('/record/update',[RecordController::class,'update'])->name('record.update');
     Route::post('/record/delete',[RecordController::class,'delete'])->name('record.delete');
     Route::get('/user',[UserController::class,'getName'])->name('getName');
+
+    Route::post('/record/image',[PostsController::class,'create'])->name('image');
+    Route::get('/record/post',[PostsController::class,'index'])->name('post');
 });
 
 require __DIR__.'/auth.php';
