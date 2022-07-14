@@ -8,7 +8,7 @@
 <input type="submit" value="アップロード">
 </form>
 
-<a href="{{ route('post') }}">post</a>
+<a href="{{ route('post') }}">postimage</a>
 //end
     <div>
         <form class="float-right" action="{{ route('logout') }}" method="post">
