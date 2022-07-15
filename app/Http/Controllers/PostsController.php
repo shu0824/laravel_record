@@ -28,8 +28,7 @@ public function index(Request $request)
       //s3アップロード開始
       $image = $request->file('image');
       // バケットの`myprefix`フォルダへアップロード
-      $path = Storage::disk('s3')->put('myprefix', $image, 'public');
-      dd($path);
+      $path = Storage::disk('s3')->put('/', $image, 'public');
       // アップロードした画像のフルパスを取得
       $post->image_path = Storage::disk('s3')->url($path);
 
