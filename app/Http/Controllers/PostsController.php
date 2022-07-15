@@ -25,11 +25,11 @@ public function index(Request $request)
       $post = new Post;
       $form = $request->all();
 
-      dd($request->hasFile('image'));
       //s3アップロード開始
       $image = $request->file('image');
       // バケットの`myprefix`フォルダへアップロード
-      $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+      $path = Storage::disk('s3')->put('myprefix', $image, 'public');
+      dd($path);
       // アップロードした画像のフルパスを取得
       $post->image_path = Storage::disk('s3')->url($path);
 
