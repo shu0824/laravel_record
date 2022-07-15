@@ -25,6 +25,7 @@ public function index(Request $request)
       $post = new Post;
       $form = $request->all();
 
+      dd($request->hasFile('image'));
       //s3アップロード開始
       $image = $request->file('image');
       // バケットの`myprefix`フォルダへアップロード
