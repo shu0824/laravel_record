@@ -1,15 +1,6 @@
 @extends('layouts.record')
 @section('title','ホーム')
 @section('content')
-//new
-<form action="{{ route('image') }}" method="post" enctype="multipart/form-data">
-@csrf
-<input type="file" name="image">
-<input type="submit" value="アップロード">
-</form>
-
-<a href="{{ route('post') }}">postimage</a>
-//end
     <div>
         <form class="float-right" action="{{ route('logout') }}" method="post">
             @csrf
@@ -82,7 +73,7 @@
         @foreach($records as $record)
         <div>
             <a href="{{ route('record.detail',$record->id)}}" class="group xl:h-96 lg:h-96 h-64 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
-            <img src="data:image/png;base64,{{ $record->image }}" loading="lazy" alt="NoImage" class="w-full h-full object-contain xl:object-cover lg:object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
+            <img src="{{ $record->image_path }}" loading="lazy" alt="NoImage" class="w-full h-full object-contain xl:object-cover lg:object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
 
             @include('layouts.star')
 

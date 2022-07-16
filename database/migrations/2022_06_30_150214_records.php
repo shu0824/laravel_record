@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->string('title');
             $table->string('point')->nullable();
-            $table->text('image')->nullable();
+            $table->text('image_path')->nullable();
             $table->text('content')->nullable();
             $table->string('category');
             $table->timestamps();

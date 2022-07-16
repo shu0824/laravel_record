@@ -7,6 +7,7 @@ use App\Models\Record;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RecordRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class RecordController extends Controller
 {
@@ -122,35 +123,17 @@ class RecordController extends Controller
             ]);
 
             if($request->image){
-                //new
-                $image = base64_encode(file_get_contents($request->image->getRealPath()));
-                // $image = $request->file('image');
-                // $path = $image->store('img','public');
 
-                if($image){
+                $image = $request->file('image');
+                $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+                $image_path = Storage::disk('s3')->url($path);
+
+                if($image_path){
                     Record::where('title',$request->title)->where('content',$request->content)->update([
-                        'image' => $image,
+                        'image_path' => $image_path,
                     ]);
                 }
-            // }else{
-            //     Record::where('title',$request->title)->update([
-            //         'image' => 'img/ya8lCdOabnqQjlBHcVcAZvcgsiHzw6H1g4I3NTYc.jpg',
-            //     ]);
             }
-            //     $image = $request->file('image');
-            //     $path = $image->store('img','public');
-            //     if($path){
-            //         Record::where('title',$request->title)->update([
-            //             'image' => $path,
-            //         ]);
-            //     }
-            // }else{
-            //     Record::where('title',$request->title)->update([
-            //         'image' => 'img/ya8lCdOabnqQjlBHcVcAZvcgsiHzw6H1g4I3NTYc.jpg',
-            //     ]);
-            // }
-
-
             return redirect()->route('record.index');
         }
     // 更新
@@ -170,17 +153,18 @@ class RecordController extends Controller
             'content' => $request->content,
             'category' => $request->category,
         ]);
-        if($request->image){
-            if($request->image !== $record->image){
-                $image = base64_encode(file_get_contents($request->image->getRealPath()));
-                if($image){
-                    $record->update([
-                        'image' => $image,
-                    ]);
-                }
+        if($request->hasFile('image')){
+                $image = $request->file('image');
+                $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+                $image_path = Storage::disk('s3')->url($path);
+                $record->update([
+                    'image_path' => $image_path,
+                ]);
+            }else{
+                $record->update([
+                    'image_path' => $record->image_path
+                ]);
             }
-        }
-
         return redirect()->route('record.detail',session('select_id'));
     }
     // 削除

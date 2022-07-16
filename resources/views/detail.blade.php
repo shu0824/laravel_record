@@ -22,7 +22,7 @@
           <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
             <div>
               <div class="h-64 md:h-auto bg-gray-100 overflow-hidden rounded-lg shadow-lg">
-                <img src="data:image/png;base64,{{ $record->image }}" loading="lazy" alt="NoImage" class="w-full h-full max-h-screen object-contain object-center" />
+                <img src="{{ $record->image_path }}" loading="lazy" alt="NoImage" class="w-full h-full max-h-screen object-contain object-center" />
               </div>
             </div>
 
