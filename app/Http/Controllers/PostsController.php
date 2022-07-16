@@ -30,7 +30,7 @@ public function index(Request $request)
       var_dump($image);
       // バケットの`myprefix`フォルダへアップロード
       $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
-      dd($path);
+      var_dump($path);
       // アップロードした画像のフルパスを取得
       $post->image_path = Storage::disk('s3')->url($path);
 
