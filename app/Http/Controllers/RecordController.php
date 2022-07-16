@@ -155,15 +155,16 @@ class RecordController extends Controller
         ]);
         if($request->hasFile('image')){
                 $image = $request->file('image');
+                Storage::disk('s3')->delete($image);
                 $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
                 $image_path = Storage::disk('s3')->url($path);
                 $record->update([
                     'image_path' => $image_path,
                 ]);
-            }else{
-                $record->update([
-                    'image_path' => $record->image_path
-                ]);
+            // }else{
+            //     $record->update([
+            //         'image_path' => $record->image_path
+            //     ]);
             }
         return redirect()->route('record.detail',session('select_id'));
     }

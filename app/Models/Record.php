@@ -13,7 +13,7 @@ class Record extends Model
         'user_id',
         'title',
         'point',
-        'image',
+        'image_path',
         'category',
         'content',
     ];
