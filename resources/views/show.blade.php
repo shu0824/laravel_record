@@ -17,7 +17,7 @@
 
     </div>
 </div>
-<div class="bg-white py-6 sm:py-8 lg:py-12">
+<div class="h-screen bg-white py-6 sm:py-8 lg:py-12">
         <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
           <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
             <div>
@@ -34,7 +34,7 @@
 
               <h2 class="text-gray-500 text-xl sm:text-2xl font-semibold text-center md:text-left mb-2 md:mb-4">メモ</h2>
 
-              <p class="text-gray-800 sm:text-lg mb-6 md:mb-8">{{ $record->content }}</p>
+              <p class="text-gray-800 sm:text-lg mb-6 md:mb-8 text-left">{{ $record->content }}</p>
             </div>
           </div>
         </div>

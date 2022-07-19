@@ -3,7 +3,8 @@
 laravelで作成した記録アプリです。
 視聴した映画や本などを記録したい際に役に立ちます。
 
-<img width="1440" alt="スクリーンショット 2022-07-19 23 44 06" src="https://user-images.githubusercontent.com/96071960/179779228-b6547882-e72d-47f9-8b59-e346b3b80147.png">
+<img width="1440" alt="スクリーンショット 2022-07-19 23 49 03" src="https://user-images.githubusercontent.com/96071960/179786185-51b10160-5da1-41ed-aa4c-623942b1aafc.png">
+<img width="1440" alt="スクリーンショット 2022-07-20 0 13 29" src="https://user-images.githubusercontent.com/96071960/179786004-89e45fbe-9514-422d-8b01-fb9e4fa571c0.png">
 
 # 機能
 
