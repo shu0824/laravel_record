@@ -16,20 +16,29 @@ use App\Http\Controllers\PostsController;
 |
 */
 Route::group(['middleware '=> ['auth']],function(){
-
+    //一覧画面の表示
     Route::get('/',[RecordController::class,'index'])->name('record.index');
     Route::post('/',[RecordController::class,'index'])->name('record.index');
-    Route::get('/record/addForm',[RecordController::class,'showAddForm'])->name('record.addIndex');
-    Route::get('/record/detail/{id}',[RecordController::class,'showDetail'])->name('record.detail');
-    Route::post('/record/add',[RecordController::class,'add'])->name('record.add');
-    Route::post('/record/updateForm',[RecordController::class,'showUpdateForm'])->name('record.updateIndex');
-    Route::get('/record/updateForm',[RecordController::class,'showUpdateForm'])->name('record.updateIndex');
-    Route::post('/record/update',[RecordController::class,'update'])->name('record.update');
-    Route::post('/record/delete',[RecordController::class,'delete'])->name('record.delete');
-    Route::get('/user',[UserController::class,'getName'])->name('getName');
-
-    Route::post('/record/image',[PostsController::class,'create'])->name('image');
-    Route::get('/record/post',[PostsController::class,'index'])->name('post');
+    //記録の登録画面の表示
+    Route::get('/create',[RecordController::class,'create'])->name('record.create');
+    //記録の登録処理
+    Route::post('/store',[RecordController::class,'store'])->name('record.store');
+    //記録の詳細の表示
+    Route::get('/show/{id}',[RecordController::class,'show'])->name('record.show');
+    //記録の編集画面
+    Route::post('/edit',[RecordController::class,'edit'])->name('record.edit');
+    //記録の更新処理
+    Route::post('/update',[RecordController::class,'update'])->name('record.update');
+    //記録の削除処理
+    Route::post('/destroy',[RecordController::class,'destroy'])->name('record.destroy');
+    //アカウントの詳細画面の表示
+    Route::get('/account',[UserController::class,'show'])->name('account.show');
+    //全ての記録の削除処理
+    Route::post('/allDestroy',[RecordController::class,'allDestroy'])->name('record.allDestroy');
+    //アカウントの削除処理
+    Route::get('/account/destroy',[UserController::class,'destroy'])->name('account.destroy');
+    //アカウント名の取得
+    Route::get('/name',[UserController::class,'getName'])->name('getName');
 });
 
 require __DIR__.'/auth.php';

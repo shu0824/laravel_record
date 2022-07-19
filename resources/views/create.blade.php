@@ -12,7 +12,7 @@
 <a href="{{ route('record.index') }}">
     <button class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-solid fa-arrow-left"></i></button></a>
 <div class="p-6 border border-gray-300 bg-white sm:rounded-md">
-    <form action="{{ route('record.add') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('record.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
         <label class="block mb-6">
             <span class="text-gray-700">タイトル</span>

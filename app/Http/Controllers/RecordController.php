@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RecordRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\UserController;
 
 class RecordController extends Controller
 {
-    // ページ表示
-    // --start--
+    //一覧画面の表示
     public function index(Request $request)
     {
         if(!Auth::id()){
@@ -64,7 +64,7 @@ class RecordController extends Controller
                 $records = Record::where('user_id',Auth::id())->where('category',session('select_category'))->orderBy('created_at','asc')->get();
                 break;}
             }else{
-                $records = Record::where('user_id',Auth::id())->where('category',session('select_category'))->orderBy('updated_at','desc')->get();
+                $records = Record::where('user_id',Auth::id())->where('category',session('select_category'))->orderBy('created_at','desc')->get();
             }
 
             if($request->search_title){
@@ -78,50 +78,45 @@ class RecordController extends Controller
         ]);
     }
 
-    //詳細
-    public function showDetail($id)
+
+    //詳細の表示
+    public function show($id)
     {
         $records = Record::where('id',$id)->get();
         session()->put('select_id', $id);
 
-        return view('detail',[
+        return view('show',[
             'records' => $records,
         ]);
     }
-    // 追加フォーム
-    public function showAddForm()
+
+
+    // 追加画面の表示
+    public function create()
     {
-        return view('add');
+        return view('create');
     }
-    // 更新フォーム
-    public function showUpdateForm()
+
+
+    // 編集画面の表示
+    public function edit()
     {
         $records = Record::where('id',session('select_id'))->get();
 
-        return view('update',[
+        return view('edit',[
             'records' => $records,
         ]);
     }
-    // --end--
 
-    // 機能
-    // --start--
-    // 追加
-    public function add(Request $request)
+
+    // 追加処理
+    public function store(Request $request)
     {
         $request->validate([
                 'title' => ['required', 'max:25'],
                 'category' => ['required', 'max:10']
             ]);
-
-            Record::create([
-                'user_id' => Auth::id(),
-                'title' => $request->title,
-                'point' => $request->point,
-                'content' => $request->content,
-                'category' => $request->category,
-            ]);
-
+            //画像ファイルがある場合
             if($request->image){
 
                 $image = $request->file('image');
@@ -129,20 +124,35 @@ class RecordController extends Controller
                 $image_path = Storage::disk('s3')->url($path);
 
                 if($image_path){
-                    Record::where('title',$request->title)->where('content',$request->content)->update([
+                    Record::create([
+                        'user_id' => Auth::id(),
+                        'title' => $request->title,
+                        'point' => $request->point,
                         'image_path' => $image_path,
+                        'content' => $request->content,
+                        'category' => $request->category,
                     ]);
                 }
+            //画像ファイルがない場合
+            }else{
+                Record::create([
+                    'user_id' => Auth::id(),
+                    'title' => $request->title,
+                    'point' => $request->point,
+                    'content' => $request->content,
+                    'category' => $request->category,
+                ]);
             }
-            return redirect()->route('record.index');
+            return redirect()->route('record.index')->with('message','追加しました');
         }
-    // 更新
+
+
+    // 更新処理
     public function update(Request $request)
     {
         $record = Record::find(session('select_id'));
 
         $request->validate([
-            // 'title' => ['required', 'max:25', 'unique:records,title,'.session('select_id')],
             'title' => ['required', 'max:25'],
             'category' => ['required', 'max:10']
         ]);
@@ -161,21 +171,29 @@ class RecordController extends Controller
                 $record->update([
                     'image_path' => $image_path,
                 ]);
-            // }else{
-            //     $record->update([
-            //         'image_path' => $record->image_path
-            //     ]);
             }
-        return redirect()->route('record.detail',session('select_id'));
+        return redirect()->route('record.show',session('select_id'));
     }
-    // 削除
-    public function delete()
+
+
+    // 削除処理
+    public function destroy()
     {
         Record::find(session('select_id'))->delete();
         session()->remove('select_id');
 
-        return redirect()->route('record.index');
+        return redirect()->route('record.index')->with('message','削除しました');
     }
+
+
+    //削除処理（全削除）
+    public function allDestroy()
+    {
+        Record::where('user_id',Auth::id())->delete();
+        return redirect()->action([UserController::class,'destroy']);
+    }
+
+
     // ユーザー名取得
     private function getLoginUserName() {
         $user = Auth::user();
@@ -191,5 +209,4 @@ class RecordController extends Controller
 
         return $name;
     }
-    // --end--
 }

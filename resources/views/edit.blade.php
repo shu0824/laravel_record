@@ -81,7 +81,7 @@
             @endforeach
     </form>
 
-    <a href="{{route('record.detail',session('select_id'))}}">戻る</a>
+    <a href="{{route('record.show',session('select_id'))}}">戻る</a>
 
     <script>
     function previewImage(a)
