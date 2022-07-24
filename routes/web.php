@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\FollowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,13 +32,25 @@ Route::group(['middleware '=> ['auth']],function(){
     //記録の削除処理
     Route::post('/destroy',[RecordController::class,'destroy'])->name('record.destroy');
     //アカウントの詳細画面の表示
-    Route::get('/account',[UserController::class,'show'])->name('account.show');
+    Route::get('/user',[UserController::class,'index'])->name('user.index');
     //全ての記録の削除処理
     Route::post('/allDestroy',[RecordController::class,'allDestroy'])->name('record.allDestroy');
     //アカウントの削除処理
-    Route::get('/account/destroy',[UserController::class,'destroy'])->name('account.destroy');
+    Route::get('/user/destroy',[UserController::class,'destroy'])->name('user.destroy');
     //アカウント名の取得
     Route::get('/name',[UserController::class,'getName'])->name('getName');
+    //ユーザー名の表示
+    // Route::post('/user/show',[UserController::class,'getUserName'])->name('getUserName');
+    //ユーザー検索画面の表示
+    Route::get('/user/search',[UserController::class,'search'])->name('user.search');
+
+    Route::post('/user/search',[UserController::class,'search'])->name('user.search');
+    //ユーザーをフォローする
+    Route::post('/follow',[FollowController::class,'follow'])->name('follow');
+    //sessionの
+    Route::get('/follow/index',[FollowController::class,'index'])->name('follow.index');
+    Route::get('/follow/confirm',[FollowController::class,'confirm'])->name('follow.confirm');
+    Route::post('/follow/destroy',[FollowController::class,'destroy'])->name('follow.destroy');
 });
 
 require __DIR__.'/auth.php';

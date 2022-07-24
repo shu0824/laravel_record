@@ -1,59 +1,66 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <script src="https://kit.fontawesome.com/d2664eb908.js" crossorigin="anonymous"></script>
+    <title>新規登録</title>
+</head>
+<body  class="xl:w-1/2 lg:w-1/2 md:w-1/2 w-full  m-auto mt-16  bg-gray-100 list-none">
+    <div class="p-6 border border-gray-300 bg-white sm:rounded-md">
+        <form action="{{ route('register') }}" method="post">
+        @csrf
+            <label class="block mb-6">
+                <span class="text-gray-700">ユーザーネーム</span>
+                <input
+                name="name"
+                type="text"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+                @include('layouts.error',[
+                'errors' => $errors,
+                'error' => 'name'
+                ])
+            </label>
+            <label class="block mb-6">
+                <span class="text-gray-700">メールアドレス</span>
+                <input
+                name="email"
+                type="email"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+                @include('layouts.error',[
+                'errors' => $errors,
+                'error' => 'email'
+                ])
+            </label>
+            <label class="block mb-6">
+                <span class="text-gray-700">パスワード（８文字以上）</span>
+                <input
+                name="password"
+                type="password"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+                @include('layouts.error',[
+                'errors' => $errors,
+                'error' => 'password'
+                ])
+            </label>
+            <label class="block mb-6">
+                <span class="text-gray-700">パスワード（確認用）</span>
+                <input
+                name="password_confirmation"
+                type="password"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+            </label>
+            <div class="flex justify-between">
+                <button class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">登録</button>
+                <a href="{{ route('login') }}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900  hover:text-blue-700 focus:z-10 dark:text-gray-400  dark:hover:text-white">ログイン画面へ
                 </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+</body>

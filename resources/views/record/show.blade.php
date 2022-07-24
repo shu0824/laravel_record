@@ -17,12 +17,12 @@
 
     </div>
 </div>
-<div class="h-screen bg-white py-6 sm:py-8 lg:py-12">
+<div class="h-full bg-white py-6 sm:py-8 lg:py-12">
         <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
           <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
             <div>
-              <div class="h-64 md:h-auto bg-gray-100 overflow-hidden rounded-lg shadow-lg">
-                <img src="{{ $record->image_path }}" loading="lazy" alt="NoImage" class="w-full h-full max-h-screen object-contain object-center" />
+              <div class="h-full md:h-auto bg-gray-100 overflow-hidden rounded-lg shadow-lg">
+                <img src="{{ $record->image_path }}" loading="lazy" alt="NoImage" class="w-full h-full  object-contain object-center" />
               </div>
             </div>
 
