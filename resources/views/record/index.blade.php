@@ -142,10 +142,10 @@
     @foreach($records as $record)
     <div>
         <a href="{{ route('record.show',$record->id)}}" class="group xl:h-96 lg:h-96 h-64 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4">
-        @if(isset($records->image_path))
+        @if(isset($record->image_path))
         <img src="{{ $record->image_path }}" loading="lazy" alt="NoImage" class="w-full h-full object-contain xl:object-cover lg:object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
         @else
-        <img src="{{ asset('img/f_f_object_128_s512_f_object_128_0bg.jpg') }}" loading="lazy" alt="NoImage" class="w-full h-full object-contain xl:object-cover lg:object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
+        <img src="{{ asset('img/noImage.jpeg') }}" loading="lazy" alt="NoImage" class="w-full h-full object-contain xl:object-cover lg:object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
         @endif
 
         @include('layouts.star')

@@ -23,7 +23,11 @@
           <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
             <div>
               <div class="h-full md:h-auto bg-gray-100 overflow-hidden rounded-lg shadow-lg">
+                @if(isset($record->image_path))
                 <img src="{{ $record->image_path }}" loading="lazy" alt="NoImage" class="w-full h-full  object-contain object-center" />
+                @else
+                <img src="{{ asset('img/noImage.jpeg') }}" loading="lazy" alt="NoImage" class="w-full h-full  object-contain object-center" />
+                @endif
               </div>
             </div>
 
