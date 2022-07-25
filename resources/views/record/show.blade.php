@@ -7,6 +7,7 @@
         <a href="{{ route('record.index') }}">
         <button class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-solid fa-arrow-left"></i></button></a>
     </div>
+    @if(session('user_id' == Auth::id()))
     <div class="flex">
         <form method="post">
             @csrf
@@ -14,8 +15,8 @@
             <input id="deleteSub" type="hidden" formaction="{{ route('record.destroy') }}">
             <button id="deleteBtn" formaction="{{ route('record.destroy') }}" onclick=" return confirm('削除してよろしいですか？')" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-solid fa-trash"></i></button>
         </form>
-
     </div>
+    @endif
 </div>
 <div class="h-full bg-white py-6 sm:py-8 lg:py-12">
         <div class="max-w-screen-xl px-4 md:px-8 mx-auto">
