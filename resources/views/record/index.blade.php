@@ -113,7 +113,7 @@
             {{-- 検索 --}}
             <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
             {{-- me --}}
-            @if(session('user_id' == Auth::id()))
+            @if(session('user_id') == Auth::id())
             <div id="searchDiv" class="hidden absolute right-0 z-10 bg-white border-gray-400 rounded shadow w-48">
             {{-- other --}}
             @else
