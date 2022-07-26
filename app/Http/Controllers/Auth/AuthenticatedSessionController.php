@@ -17,7 +17,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        // return view('auth.login');
         return view('auth.login');
     }
 
@@ -50,7 +49,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        session()->forget('user_name');
+        // session()->forget('user_name');
+        session()->flush();
 
         return redirect('/login');
     }

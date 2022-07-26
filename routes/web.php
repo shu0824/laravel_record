@@ -39,17 +39,18 @@ Route::group(['middleware '=> ['auth']],function(){
     Route::get('/user/destroy',[UserController::class,'destroy'])->name('user.destroy');
     //アカウント名の取得
     Route::get('/name',[UserController::class,'getName'])->name('getName');
-    //ユーザー名の表示
-    // Route::post('/user/show',[UserController::class,'getUserName'])->name('getUserName');
     //ユーザー検索画面の表示
     Route::get('/user/search',[UserController::class,'search'])->name('user.search');
-
     Route::post('/user/search',[UserController::class,'search'])->name('user.search');
+    //ユーザーの公開、非公開状態を変更する処理
+    Route::post('/user/privacy',[UserController::class,'privacy'])->name('user.privacy');
     //ユーザーをフォローする
     Route::post('/follow',[FollowController::class,'follow'])->name('follow');
-    //sessionの
+    //フォローしているユーザーを表示
     Route::get('/follow/index',[FollowController::class,'index'])->name('follow.index');
+    //フォローしているか確認する処理
     Route::get('/follow/confirm',[FollowController::class,'confirm'])->name('follow.confirm');
+    //フォローを解除する処理
     Route::post('/follow/destroy',[FollowController::class,'destroy'])->name('follow.destroy');
 });
 

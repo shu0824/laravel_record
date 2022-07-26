@@ -31,6 +31,18 @@
             </li>
         </a>
         <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm font-medium text-gray-800 dark:text-white">
+            <form class="float-right" action="{{ route('user.privacy') }}" method="post">
+                @csrf
+                @if($privacy == 'private')
+                <button class="font-medium text-gray-900 rounded-lg hover:text-blue-700 focus:z-10" type="submit">アカウントを公開する</button>
+                <input name="privacy" type="hidden" value="bePublic">
+                @elseif($privacy == 'public')
+                <button class="font-medium text-gray-900 rounded-lg hover:text-blue-700 focus:z-10" type="submit">アカウントを非公開にする</button>
+                <input name="privacy" type="hidden" value="bePrivate">
+                @endif
+            </form>
+        </li>
+        <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm font-medium text-gray-800 dark:text-white">
             <form class="float-right" action="{{ route('logout') }}" method="post">
                 @csrf
                 <button class="font-medium text-gray-900 rounded-lg hover:text-blue-700 focus:z-10">ログアウト</button>

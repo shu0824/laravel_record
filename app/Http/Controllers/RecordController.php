@@ -78,6 +78,7 @@ class RecordController extends Controller
                 break;}
             }else{
                 $records = Record::where('user_id',session('user_id'))->where('category',session('select_category'))->orderBy('created_at','desc')->get();
+                session()->put('select_order','新しい順');
             }
 
             if($request->search_title){

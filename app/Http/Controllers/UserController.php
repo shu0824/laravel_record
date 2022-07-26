@@ -21,7 +21,13 @@ class UserController extends Controller
                 session()->forget('follow');
             }
         }
-        return view('user.index');
+        $users = User::where('id',Auth::id())->get();
+        foreach($users as $user){
+            $privacy = $user->privacy;
+        }
+        return view('user.index',[
+            'privacy' => $privacy,
+        ]);
     }
 
 
@@ -39,7 +45,7 @@ class UserController extends Controller
     //検索したユーザー名の表示
     public function search(Request $request)
     {
-        $userName = User::where('name',$request->name)->get();
+        $userName = User::where('name',$request->name)->where('privacy','public')->get();
         if(isset($userName)){
             return view('user.search',[
                 'userName' => $userName
@@ -47,17 +53,26 @@ class UserController extends Controller
         }
     }
 
+    public function privacy(Request $request)
+    {
+        if($request->privacy == 'bePrivate'){
+            User::find(Auth::id())->update([
+                'privacy' => 'private'
+            ]);
+        }elseif($request->privacy == 'bePublic'){
+            User::find(Auth::id())->update([
+                'privacy' => 'public'
+            ]);
+        }
+        return redirect()->route('user.index');
+    }
+
     //アカウントの削除処理
     public function destroy()
     {
         User::where('name',session('user_name'))->delete();
-        return view('destroyMessage',[
-            'message' => 'アカウントを削除しました'
-        ]);
+        session()->flush();
+        return 'アカウントを削除しました';
     }
 
-    public function getUser()
-    {
-
-    }
 }

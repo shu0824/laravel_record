@@ -9,6 +9,7 @@ use App\Http\Controllers\RecordController;
 
 class FollowController extends Controller
 {
+    //ユーザーをフォローする処理
     public function follow()
     {
         Follow::create([
@@ -32,6 +33,7 @@ class FollowController extends Controller
         ]);
     }
 
+    //フォローしているか確認する処理
     public function confirm()
     {
         if(Follow::where('from',Auth::id())->where('for',session('user_id'))->exists()){

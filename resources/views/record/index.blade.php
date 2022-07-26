@@ -36,22 +36,14 @@
     @elseif(session('follow'))
     <form class="float-right" action="{{ route('follow.destroy') }}" method="post">
         @csrf
-        <div>
-            <a href="{{ route('user.index') }}">User:
-                {{ session('user_name') }}
-            </a>
-        </div>
+        <div>User:{{ session('user_name') }}</div>
         <button class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">followNow</button>
     </form>
     {{-- フォローしていない場合 --}}
     @else
     <form class="float-right" action="{{ route('follow') }}" method="post">
         @csrf
-        <div>
-            <a href="{{ route('user.index') }}">User:
-                {{ session('user_name') }}
-            </a>
-        </div>
+        <div>User:{{ session('user_name') }}</div>
         <button class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">follow</button>
     </form>
     @endif
@@ -63,16 +55,26 @@
         @foreach($categories as $category)
         <form action="{{ route('record.index') }}" method="post">
         @csrf
+
+        {{-- 選択されている場合 --}}
+        @if($category->category == session('select_category'))
+        <button class="py-4 px-6 block text-blue-500 focus:outline-none border-b-2 font-medium border-blue-500">
+            {{ $category->category }}
+        </button>
+        {{-- 選択されていない場合 --}}
+        @else
         <button class="text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-gray-500 border-b-2 font-medium hover:border-blue-500">
             {{ $category->category }}
         </button>
+        @endif
+
         <input name="category" type="hidden" value="{{ $category->category }}">
         </form>
         @endforeach
     </nav>
 </div>
 
-{{-- カテゴリー --}}
+{{-- 選択されているカテゴリーと件数 --}}
 <div class="bg-white py-6 sm:py-8 lg:py-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
         <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-8 md:mb-12">{{ session('select_category') }}</h2>
@@ -98,11 +100,19 @@
             @else
             <div id="orderDiv" class="hidden absolute left-0 z-10 bg-white border-gray-400 rounded shadow w-48 divide-y divide-gray-200 dark:divide-gray-700">
             @endif
-                @foreach(array('評価順','新しい順','古い順') as $order)
+                @foreach(array('新しい順','古い順','評価順') as $order)
                 <form action="{{ route('record.index') }}" method="post">
                     @csrf
                     <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm font-medium text-gray-800 dark:text-white">
+
+                        {{-- 選択されている場合 --}}
+                        @if(session('select_order') == $order)
+                        <button id="btn" class=" text-sm font-medium focus:outline-none bg-white rounded-lg  hover:bg-gray-100 text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" >{{ $order }}</button>
+                        {{-- 選択されていない場合 --}}
+                        @else
                         <button id="btn" class=" text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" >{{ $order }}</button>
+                        @endif
+
                     <input name="order" type="hidden" value="{{ $order }}">
                     </li>
                 </form>
